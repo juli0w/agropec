@@ -5,8 +5,8 @@
 <% end %>
 
 <nav>
-  <div class="nav-wrapper">
-    <a href="/" class="brand-logo">Loja do Pintor</a>
+  <div class="nav-wrapper lime darken-3">
+    <a href="/" class="brand-logo">Agropecuária</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <% unless user_signed_in? %>
         <li><%= link_to new_user_session_path do %>
@@ -17,7 +17,6 @@
         <% end %></li>
       <% else %>
         <li><%= link_to 'Catálogo', root_path %></li>
-        <li><%= link_to 'Tintas', tintas_path %></li>
         <% if current_user.role.to_i == 0 %>
           <li><%= link_to 'Dados', profile_path %></li>
         <% end %>
@@ -30,9 +29,6 @@
           <li><%= link_to 'Clientes', clients_path %></li>
         <% end %>
         <% if current_user.admin? %>
-        <li><%= link_to "#", 'data-activates' => "dropdown4", class: "dropdown-button" do %>
-          Estoque <i class="material-icons right">arrow_drop_down</i>
-        <% end %></li>
           <li><%= link_to "#", 'data-activates' => "dropdown1", class: "dropdown-button" do %>
             Relatórios <i class="material-icons right">arrow_drop_down</i>
           <% end %></li>
@@ -41,29 +37,16 @@
         <li><%= link_to "#", 'data-activates' => "dropdown2", class: "dropdown-button" do %>
           Cadastros <i class="material-icons right">arrow_drop_down</i>
         <% end %></li>
-        <li><%= link_to "#", 'data-activates' => "dropdown3", class: "dropdown-button" do %>
-          Integrações <i class="material-icons right">arrow_drop_down</i>
-        <% end %></li>
         <% end %>
         <li><%= link_to 'Sair', destroy_user_session_path, method: :delete %></li>
       <% end %>
-    </ul>
-
-    <ul id="dropdown4" class="dropdown-content">
-      <li><%= link_to 'Lojas', stocks_path %></li>
-      <li><%= link_to 'Movimentação', "" %></li>
-    </ul>
-
-    <ul id="dropdown3" class="dropdown-content">
-      <li><%= link_to 'Resicolor', resicolor_path %></li>
-      <li><%= link_to 'Efator', import_path %></li>
-      <li><%= link_to 'Formulas', formulas_path %></li>
     </ul>
 
     <ul id="dropdown2" class="dropdown-content">
       <li><%= link_to 'Usuários', users_path %></li>
       <li><%= link_to 'Itens', items_path %></li>
       <li><%= link_to 'Ramos', sections_path %></li>
+      <li><%= link_to 'Lojas', stocks_path %></li>
     </ul>
 
     <ul id="dropdown1" class="dropdown-content">
@@ -85,7 +68,6 @@
         <% end %></li>
       <% else %>
       <li><%= link_to 'Catálogo', root_path %></li>
-      <li><%= link_to 'Tintas', tintas_path %></li>
       <% if current_user.role.to_i == 0 %>
         <li><%= link_to 'Dados', profile_path %></li>
       <% end %>
@@ -93,6 +75,7 @@
           <li><%= link_to 'Usuários', users_path %></li>
           <li><%= link_to 'Itens', items_path %></li>
           <li><%= link_to 'Ramos', sections_path %></li>
+          <li><%= link_to 'Lojas', stocks_path %></li>
         <% end %>
         <% if false#current_user.caixa? %>
           <li><%= link_to 'Caixa', caixa_path %></li>

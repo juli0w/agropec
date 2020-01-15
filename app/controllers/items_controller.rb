@@ -25,9 +25,19 @@ class ItemsController < ApplicationController
     render layout: nil
   end
 
-  def become
-    sign_in(:item, Item.find(params[:id]))
-    redirect_to root_url
+  def new
+    @item = Item.new
+  end
+
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      flash[:success] = "Salvo com sucesso!"
+      redirect_to items_path
+    else
+      flash.now[:alert] = "Por favor verifique os campos."
+      render :new
+    end
   end
 
   def edit
@@ -50,6 +60,6 @@ private
   end
 
   def item_params
-    params.require(:item).permit(:image, :remove_image)
+    params.require(:item).permit(:image, :remove_image, :name, :price)
   end
 end

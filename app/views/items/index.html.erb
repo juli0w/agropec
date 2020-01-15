@@ -10,20 +10,22 @@
   <div class="row">
     <div class="card-panel">
       <div class="search-offers">
+        <%= link_to "Novo Item", new_item_path, class: "btn" %>
+        <%= link_to "Imprimir", print_items_path(keyword: params[:keyword]), class: "btn large blue" %>
+
         <%= form_tag items_path, method: :get do %>
             <fieldset style="border: none; margin: 0; padding: 0;">
               <input name="keyword" id="icon_local" style="display: inline;" type="search" placeholder="Filtrar itens" value='<%= params[:keyword] %>'>
               <button class="btn" type="submit" name="action">
                 Filtrar
               </button>
-              <%= link_to "Imprimir", print_items_path(keyword: params[:keyword]), class: "btn large blue" %>
               <%#= link_to "Sem imagem", items_path(noimage: 'noimage'), class: "btn right" %>
           </fieldset>
         <% end %>
       </div>
-    <div>
+    </div>
 
-    <div>
+    <div class="card-panel">
       <table class="striped bordered">
         <thead>
           <tr>
@@ -31,7 +33,6 @@
             <th data-field="id"></th>
             <th data-field="name">Nome</th>
             <th data-field="name">Categoria</th>
-            <th data-field="name">Estoque</th>
             <th data-field="actions"></th>
           </tr>
         </thead>
@@ -44,10 +45,6 @@
               <td><%= item.code %></td>
               <td><%= item.name %></td>
               <td><%= item.subgroup.try(:name) %></td>
-              <td><% Stock.all.each do |stock| %>
-                  <p><%= "#{stock.name}: #{stock.of_item(item.id)}" %></p>
-                <% end %>
-              </td>
               <td>
                 <%= link_to "Editar", [:edit, item] %>
               </td>

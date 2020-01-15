@@ -1,5 +1,19 @@
 <%= form_for @item, html: { multipart: true } do |f| %>
   <div class="row">
+    <div class="input-field col s12">
+      <%= f.label :name, "Nome" %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.label :price, "Preço" %>
+      <%= f.number_field :price, step: '0.01' %>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col s12">
       <%= image_tag(@item.image.thumb.url) if @item.image? %>
       <%= f.hidden_field :image_cache %>
